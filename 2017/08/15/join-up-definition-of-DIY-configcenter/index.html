@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="侠客行舟|技术博客|Java|分布式|架构|大数据"><title>DIY配置中心系列（二）：接入定义 | LP's Notes</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">DIY配置中心系列（二）：接入定义</h1><a id="logo" href="/.">LP's Notes</a><p class="description">侠客行舟 不进则退</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">DIY配置中心系列（二）：接入定义</h1><div class="post-meta">Aug 15, 2017<span> | </span><span class="category"><a href="/categories/原创文章/">原创文章</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Module定义"><span class="toc-number">2.</span> <span class="toc-text">Module定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Profile定义"><span class="toc-number">3.</span> <span class="toc-text">Profile定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境划分"><span class="toc-number">3.1.</span> <span class="toc-text">环境划分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Version定义"><span class="toc-number">4.</span> <span class="toc-text">Version定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">5.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题"><span class="toc-number">6.</span> <span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础组件如何接入"><span class="toc-number">6.1.</span> <span class="toc-text">基础组件如何接入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SubModule定义"><span class="toc-number">6.1.1.</span> <span class="toc-text">SubModule定义</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于配置中心主控台的设计，其实我设计的原则是设计成一个统一管理元数据（应用接入、环境定义、版本定义、人员权限划分、配置管控等）功能的一个综合平台。对于一个应用接入配置中心来说，很自然想到需要一些实体来承担配置的管理载体。主控台是用户使用操作最为频繁的地方，良好的组织结构与交互设计能够给人带来办事效率上的提高，所以这块我也是经过了很多次版本的设计与修改，最终产出的是一个类似树型的结构体系。</p>
+<a id="more"></a>
+<h1 id="Module定义"><a href="#Module定义" class="headerlink" title="Module定义"></a>Module定义</h1><p>对于一个接入来说，我们配置中心平台需要知道该接入的一些元数据信息，比如该应用的名称是什么，它是由谁负责，联系方式是什么，是归属于哪个部门，是什么类型的应用等等，这些都是属于接入定义的范畴。这些属性当中有的我们可以通过其它外围系统获取，而有些则需要在新建接入的时候录入。</p>
+<p>我们的配置中心除了希望应用能够很好的接入以外，还希望能够接入一些自研的基础组件的配置。所以我们在定义这个载体的时候并没有直接采用application这个名称，而是使用了module这个名称。这个名称涵盖了应用接入和基础组件的接入，具体这两种接入的区别以及不同点，稍后会有介绍。</p>
+<p>Module定义的主要元数据如下：</p>
+<ul>
+<li>模块名称<br>这里是一个接入的唯一标识，由英文字母以及一些数字、下划线组成</li>
+<li>描述<br>描述该接入的一些其它方面的描述</li>
+<li>接入语言<br>多语言接入选择接入语言，如Java/NodeJS/PHP等</li>
+<li>管理员设定<br>设定该模块的管理员，模块的管理员对该模块的配置授权有决定作用</li>
+<li>归属部门<br>设定该模块归属于哪个部门</li>
+</ul>
+<h1 id="Profile定义"><a href="#Profile定义" class="headerlink" title="Profile定义"></a>Profile定义</h1><p>在配置中心中，环境的术语名称叫Profile，这其实是一个非常标准化的称呼。在国外的很多网站上，个人设置其实就是用的这个Profile词汇；而在Spring开发中，对于不同类型的配置的区分也是通过叫做Profile的选项进行区分。所以这里我们也用Profile这个词来指代环境的定义。</p>
+<p>传统的开发过程中，系统在各个不同的环境中是部署了多套系统，比如对应开发、测试、预发布和线上的环境，软件系统在各个环境都部署一套。这样做的好处是可以做到系统的环境的完全隔离，但是代价就是系统部署的量级随着环境套数的变化成指数增长。新定义一套环境是比较容易的，但是新建一套环境对应的系统部署则是非常麻烦的事情。</p>
+<h2 id="环境划分"><a href="#环境划分" class="headerlink" title="环境划分"></a>环境划分</h2><p>配置中心在这里采用的是另一种环境划分方式： 将环境划分成线上环境和线下环境。</p>
+<ul>
+<li>线上环境: 所有的部署于线上的系统连接线上的配置中心部署，并与线下完全隔离，做到安全隔离。线上的环境可以自己进行定义，目前定义了两套环境：灰度环境(stage)、正式环境（product），当然可以增加更多的环境定义。</li>
+<li>线下环境: 所有的部署于线下的系统连接线下的配置中心部署，线下的配置中心定义的环境有：开发（dev）、测试（test）、预发布（pre）等。</li>
+</ul>
+<p>这样的环境定义后，为我们后面部署配置中心打下了基础，我们部署的配置中心将只需要部署两套系统（因为考虑安全的因素，线上与线下完全隔离）。不必像传统软件系统那样，新增一套环境则需要新增加一套软件部署。</p>
+<p>Profile定义的主要元数据如下：</p>
+<ul>
+<li>环境名称<br>定义了环境的英文名称，该环境名称也包括了系统内置的一些预定义的环境名称，系统标准内置了dev/test/pre/stage/product等一系列的标准环境定义，也可以自己定义新的环境名称</li>
+<li>环境描述<br>描述环境名称以外更多的描述</li>
+<li>环境类型<br>环境类型用以区分是内置类型还是自定义类型</li>
+<li>所属模块<br>定义了该环境是属于哪个模块的，</li>
+</ul>
+<h1 id="Version定义"><a href="#Version定义" class="headerlink" title="Version定义"></a>Version定义</h1><p>对于Version这个版本来说，如果大家使用过Dubbo，一定会不对它里面的Version的概念陌生，而我们这里的Version概念与之差不太多。Version主要用于多版本配置的并行运行或者新旧滚动发布。对于Dubbo中Version的主要使用方式就是在涉及到不兼容升级接口时，在滚动升级过程中同时并存新旧版本的服务，让接口消费方有一定的时间窗口逐步迁移至新的接口服务中来。当所有的旧接口调用都迁移到新接口调用中后，老版本的接口或者服务器就可以完全下线了。</p>
+<p>在配置中心中，Version同样用于多版本并存、滚动更新这样的场景。当一个应用在某次的功能修改中发生了非常大的变更，而该变更对于当前正在线上运行的应用来说是不兼容的，也就是我们在上线操作过程中不能直接对线上的配置进行修改，因为这样直接的不兼容修改会直接反馈到线上运行应用，导致线上应用出现故障。最稳妥的做法就是新建一个版本，在应用中依赖该版本的配置进行发布，上线后线上的运行程序就会依赖新版本的配置，旧版本的配置将会失效，这时我们就可以安全的删除旧版本的配置了。</p>
+<p>同时Version因为是树型结构的最底层，所以也充当了配置数据存储的角色。所有的Module-Profile-Version形成的坐标都对应了一组的配置，该配置将以JSON的形式存储在Version的元数据中</p>
+<p>Version的主要元数据如下：</p>
+<ul>
+<li>版本名称<br>在Module-Profile的路径下唯一确定一个版本信息</li>
+<li>所属Profile<br>归属的环境信息</li>
+<li>所属Module<br>归属的接入定义</li>
+<li>配置内容（JSON）<br>配置内容，内部以JSON格式组织，配置存储的结构将在后面文章中再详细介绍</li>
+<li>数据版本<br>用户编辑配置的数据版本演进，该属性对于配置的顺序应用有非常重要的作用</li>
+<li>配置指纹<br>对配置内容进行的一个指纹签名，该属性对于后续SDK接入后配置的对比更新有非常重要的作用</li>
+<li>描述<br>对该版本的产生原因进行一些说明</li>
+</ul>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>通过上面的描述，Module/Profile/Version共同组成了一个三维坐标标记了一组配置。我们可以很快的画出一个带树状的组织结构：</p>
+<ul>
+<li>应用接入型</li>
+</ul>
+<pre><code>              Module                                                  ------&gt; Module
+                |
+-----------------------------------------------------------
+       |                  |               |        |
+      Dev                Test             Pre      ...                ------&gt; Profile
+       |                  |               |
+    -----------------     -----------     ------------------
+    |         |     |     |         |      |         |    |
+   default    v2   ...    default   v0.1   default   v10  ...         ------&gt; Version
+</code></pre><h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>以上Module/Profile/Version的划分并非没有问题，这种划分很好的解决了以应用为维度的接入，但是对于另一个以基础组件为维度的接入却显得比较困难。</p>
+<h2 id="基础组件如何接入"><a href="#基础组件如何接入" class="headerlink" title="基础组件如何接入"></a>基础组件如何接入</h2><p>对于一层的Module定义来说，可以很好的满足应用接入的需求，但是对于基础中间件的接入来说，它涉及到的维度就有两层了，一层是中间件本身的接入定义，另一层是使用该中间件的应用接入定义。怎么理解这两层含义呢？我们来举个例子：</p>
+<p>在现有的基础之上，假如我们要接入一个消费中间件MQ的组件SDK，该SDK在初始化以及运行过程中需要一些动态可调的配置，现在我们把它接入配置中心。那我们就在主控台上新建一个Module，取名我们就定为MiddleWare-MQ，好了现在定义好了一个Module，该Module下分各种环境及配置信息。那么问题来了：</p>
+<ul>
+<li>不同应用接入的中间件配置有可能不同，并不是一个大一统的配置</li>
+<li>不同应用接入的中间件配置需要该应用的负责人有权限修改配置，即接入配置中心的中间件各接入方要有权限能够修改自己的接入配置</li>
+</ul>
+<p>以上两点来说，刚才我们以应用接入的设计并不能很好的满足。</p>
+<h3 id="SubModule定义"><a href="#SubModule定义" class="headerlink" title="SubModule定义"></a>SubModule定义</h3><p>基于此现状，对基于应用接入的结构进行了扩展，将Module层进行扩展，支持多层Module父子关系（目前两层已经足够）：</p>
+<ul>
+<li>第一层定义接入中间件属性，该层属于公共层，由接入方（中间件团队）维护，这层下面不直接挂接Profile，而是挂接SubModule。</li>
+<li>第二层定义接入方属性，该层属于个性化层，由接入方（中间件团队）新建和维护，同时将配置编辑权限授权接入业务方，让业务方有权参与中间件配置编辑。该层下面才开始挂接Profile。</li>
+</ul>
+<p>这里需要说明一下，第二层的新建建议是由中间件基础组件团队来执行，而执行前是需要业务方通过申请基础组件接入，由基础组件团队新建完第二层后将该层编辑权限授予业务方。</p>
+<p>这样经过扩展之后整体的树型结构变成这样：</p>
+<ul>
+<li>基础组件接入型</li>
+</ul>
+<pre><code>              Module                                                  ------&gt; Module
+                |
+    --------------------------------------------
+    |             |            |             |
+   subModule1   subModule2    subModule3    ...                      ------&gt;  SubModule
+                  |
+                  |
+                  |
+-----------------------------------------------------------
+       |                  |               |        |
+      Dev                Test             Pre      ...                ------&gt; Profile
+       |                  |               |
+    -----------------     -----------     ------------------
+    |         |     |     |         |      |         |    |
+   default    v2   ...    default   v0.1   default   v10  ...         ------&gt; Version
+</code></pre><p>那么这两种树型融合后的结果就是：Module分两种类型(type)，一种是下面直接挂载Profile，而另一种是下面还需要挂载SubModule。那么这时Module的主要元数据就需要增加至少两个属性：</p>
+<ul>
+<li>type        用以区分该Module是哪种类型</li>
+<li>parent      用以标识该Module的父Module是谁，当type为应用接入类型时，该module的parent自然就为空了</li>
+</ul>
+<p>最新Module定义的主要元数据如下：</p>
+<ul>
+<li>模块名称<br>这里是一个接入的唯一标识，由英文字母以及一些数字、下划线组成</li>
+<li>类型<br>用以区分该Module是哪种类型</li>
+<li>父Module<br>用以标识该Module的父Module是谁</li>
+<li>描述<br>描述该接入的一些其它方面的描述</li>
+<li>接入语言<br>多语言接入选择接入语言，如Java/NodeJS/PHP等</li>
+<li>管理员设定<br>设定该模块的管理员，模块的管理员对该模块的配置授权有决定作用</li>
+<li>归属部门<br>设定该模块归属于哪个部门</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Module/Profile/Version共同组成了一个三维坐标标记了一组配置，它的组织结构形如以下结构：</p>
+<ul>
+<li>应用接入型</li>
+</ul>
+<pre><code>              Module                                                  ------&gt; Module
+                |
+-----------------------------------------------------------
+       |                  |               |        |
+      Dev                Test             Pre      ...                ------&gt; Profile
+       |                  |               |
+    -----------------     -----------     ------------------
+    |         |     |     |         |      |         |    |
+   default    v2   ...    default   v0.1   default   v10  ...         ------&gt; Version
+</code></pre><ul>
+<li>基础组件接入型</li>
+</ul>
+<pre><code>              Module                                                  ------&gt; Module
+                |
+    --------------------------------------------
+    |             |            |             |
+   subModule1   subModule2    subModule3    ...                      ------&gt;  SubModule
+                  |
+                  |
+                  |
+-----------------------------------------------------------
+       |                  |               |        |
+      Dev                Test             Pre      ...                ------&gt; Profile
+       |                  |               |
+    -----------------     -----------     ------------------
+    |         |     |     |         |      |         |    |
+   default    v2   ...    default   v0.1   default   v10  ...         ------&gt; Version
+</code></pre><p>除了这种树型结构，在后面我们还引用了<code>灰度控制</code>的概念，以便于在变更配置项时能先验证后发布的过程，极大的降低了因错误地修改配置而导致的故障出现概率。</p>
+<p>这种结构可以很好的适应各种部署问题。比如也可以把Profile抽象成机房IDC的概念，那么假如现在线上有两个数据中心，北京(bj)和上海(sh)，那我们完全可以在所有数据中心中只部署一套配置中心，仅仅使用profile就可以实现多数据中心的配置管理，如profile可以定义成product-sh，product-bj等等。</p>
+<p>当然所有数据中心只部署一套配置中心就需要解决如何高效部署的问题，这个点我会在后面的文章中描述。</p>
+</div><iframe src="/donate/?AliPayQR=/images/alipay.png&amp;WeChatQR=/images/wechat.png&amp;GitHub=null&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a class="article-share-link" data-url="http://www.lpnote.com/2017/08/15/join-up-definition-of-DIY-configcenter/" data-id="cjs2ys7kz008sazp57929vu07" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3aQW7jQAwEQP//07tAbjko203OOF6gdDLs2FIpwJDq4esVH3++jqfXT58+/c3T7z999+mXjx14eHh4o0t/OnLezxc3O2N+3sebiIeHh3eN1xaD2a3Jb9CsSODh4eF9Gi8/8qa5LQN4eHh4/xdvFhMk8cSmOOHh4eH9Fi+PBn6OHpLvJvj2Nw9kLXh4eHhdx7vaAHv/67fu7+Hh4eHFJaEtFae2vpJGPLpOPDw8vAu8fCjq7NrbjinMIl08PDy89/D2J54VhgTTfgsPDw/vBq/d1ppFBpumeTbK8GoBeHh4eIsNsHzbKTnxDJOXorrrx8PDw7vAm7XFCSz5/Q21mIzAw8PDO8RrR1HzJfvsQt/eRDw8PLyzvGIbKd58agHFEt/eFDw8PLwLvDaETRbldqRgdhOLsoGHh4d3lDcbCxh27sGnsyGDf8xE4OHh4V3gzcKCTTGYlZb8X/KtMODh4eEd5eUDTPnQQNIEt8v94f09PDw8vAUvX3zzE7dbVrN38PDw8H6Xt9noSsYF2q2ydgQhGh3Aw8PDO8SbPd5visRsCGDTauPh4eGd5eUnyNvcNubIo406dMbDw8O7wEsAeTg7u9AkPp5FyXh4eHg3eHlc277exAdt7FvEEHh4eHhrXhLa5sNSm4GtTdRbPzfg4eHhHXpmb4OJzYnbJb4dZVhlxnh4eHjBNZ8KT9tWex9YRNtveHh4eJd5p6KEfYjQDhY8voOHh4d3lDdbgmejADPeLPjAw8PDu8ebDVptluzZkNasTcfDw8O7x8uLwSyA2IQLbWHAw8PDeydvM7TafjprxGdFCA8PD+8TeLNwNl/69005Hh4e3ufw8sa6fX8WWBRhBB4eHt4FXrus55e4abXzqOKVZxh4eHh4a97qUX8U2s5KQjtAgIeHh3eB9xf6tzcrbSRvZQAAAABJRU5ErkJggg==">分享</a><div class="tags"><a href="/tags/配置中心/">配置中心</a><a href="/tags/DIY/">DIY</a></div><div class="post-nav"><a class="pre" href="/2017/08/17/high-availability-design-of-DIY-configcenter/">DIY配置中心系列（三）：高可用设计</a><a class="next" href="/2017/08/13/start-of-DIY-configcenter/">DIY配置中心系列（一）：起步</a></div><div id="container"></div><link rel="stylesheet" href="/css/default.css?v=0.0.0"><script src="/js/gitment.browser.js?v=0.0.0"></script><script>var path = "2017/08/15/join-up-definition-of-DIY-configcenter/"
+var paths = path.split("/")
+var lastPathLen = paths[paths.length-1].length
+var finalPath = paths[paths.length-1]
+if(lastPathLen == 0) {
+   finalPath = paths[paths.length-2]
+}
+var p = finalPath.length < 50 ? finalPath : finalPath.substring(0,49)
+var gitment = new Gitment({
+  id: p,
+  owner: 'icanfly',
+  repo: 'blog_comments',
+  oauth: {
+    client_id: '9d8f7a953f32b2942597',
+    client_secret: 'efbc1217c60b17a9ceae6b2bbc6885dc17c51ac7',
+  },
+})
+gitment.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://www.lpnote.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/原创文章/">原创文章</a><span class="category-list-count">38</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/原创文章/问题记录/">问题记录</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/翻译文章/">翻译文章</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/转载文章/">转载文章</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/问题记录/">问题记录</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/问题解析/" style="font-size: 15px;">问题解析</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/apache/" style="font-size: 15px;">apache</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/http/" style="font-size: 15px;">http</a> <a href="/tags/fastjson/" style="font-size: 15px;">fastjson</a> <a href="/tags/ranger/" style="font-size: 15px;">ranger</a> <a href="/tags/hdfs/" style="font-size: 15px;">hdfs</a> <a href="/tags/大数据/" style="font-size: 15px;">大数据</a> <a href="/tags/最佳实践/" style="font-size: 15px;">最佳实践</a> <a href="/tags/hortonworks/" style="font-size: 15px;">hortonworks</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/bug/" style="font-size: 15px;">bug</a> <a href="/tags/groovy/" style="font-size: 15px;">groovy</a> <a href="/tags/正则表达式/" style="font-size: 15px;">正则表达式</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/配置中心/" style="font-size: 15px;">配置中心</a> <a href="/tags/DIY/" style="font-size: 15px;">DIY</a> <a href="/tags/HIVE/" style="font-size: 15px;">HIVE</a> <a href="/tags/搜索引擎/" style="font-size: 15px;">搜索引擎</a> <a href="/tags/lucene/" style="font-size: 15px;">lucene</a> <a href="/tags/elasticsearch/" style="font-size: 15px;">elasticsearch</a> <a href="/tags/IDE/" style="font-size: 15px;">IDE</a> <a href="/tags/IDEA/" style="font-size: 15px;">IDEA</a> <a href="/tags/json/" style="font-size: 15px;">json</a> <a href="/tags/jackson/" style="font-size: 15px;">jackson</a> <a href="/tags/多线程/" style="font-size: 15px;">多线程</a> <a href="/tags/并发/" style="font-size: 15px;">并发</a> <a href="/tags/源码解读/" style="font-size: 15px;">源码解读</a> <a href="/tags/基础问题/" style="font-size: 15px;">基础问题</a> <a href="/tags/kafka/" style="font-size: 15px;">kafka</a> <a href="/tags/leetcode/" style="font-size: 15px;">leetcode</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/centos/" style="font-size: 15px;">centos</a> <a href="/tags/vim/" style="font-size: 15px;">vim</a> <a href="/tags/mac/" style="font-size: 15px;">mac</a> <a href="/tags/maven/" style="font-size: 15px;">maven</a> <a href="/tags/Mybatis/" style="font-size: 15px;">Mybatis</a> <a href="/tags/ORM/" style="font-size: 15px;">ORM</a> <a href="/tags/负载均衡/" style="font-size: 15px;">负载均衡</a> <a href="/tags/guava/" style="font-size: 15px;">guava</a> <a href="/tags/踩坑/" style="font-size: 15px;">踩坑</a> <a href="/tags/session/" style="font-size: 15px;">session</a> <a href="/tags/druid/" style="font-size: 15px;">druid</a> <a href="/tags/rpm/" style="font-size: 15px;">rpm</a> <a href="/tags/tomcat/" style="font-size: 15px;">tomcat</a> <a href="/tags/jetty/" style="font-size: 15px;">jetty</a> <a href="/tags/gc/" style="font-size: 15px;">gc</a> <a href="/tags/presto/" style="font-size: 15px;">presto</a> <a href="/tags/OOM/" style="font-size: 15px;">OOM</a> <a href="/tags/GC/" style="font-size: 15px;">GC</a> <a href="/tags/SVN/" style="font-size: 15px;">SVN</a> <a href="/tags/版本控制/" style="font-size: 15px;">版本控制</a> <a href="/tags/VCS/" style="font-size: 15px;">VCS</a> <a href="/tags/分支管理/" style="font-size: 15px;">分支管理</a> <a href="/tags/virtualbox/" style="font-size: 15px;">virtualbox</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/timewheels/" style="font-size: 15px;">timewheels</a> <a href="/tags/timer/" style="font-size: 15px;">timer</a> <a href="/tags/yarn/" style="font-size: 15px;">yarn</a> <a href="/tags/SpringCloud/" style="font-size: 15px;">SpringCloud</a> <a href="/tags/微服务/" style="font-size: 15px;">微服务</a> <a href="/tags/metrics/" style="font-size: 15px;">metrics</a> <a href="/tags/ambari/" style="font-size: 15px;">ambari</a> <a href="/tags/参与开源/" style="font-size: 15px;">参与开源</a> <a href="/tags/timewheel/" style="font-size: 15px;">timewheel</a> <a href="/tags/skywalking/" style="font-size: 15px;">skywalking</a> <a href="/tags/apm/" style="font-size: 15px;">apm</a> <a href="/tags/SQL/" style="font-size: 15px;">SQL</a> <a href="/tags/solr/" style="font-size: 15px;">solr</a> <a href="/tags/rocketmq/" style="font-size: 15px;">rocketmq</a> <a href="/tags/SpringBoot/" style="font-size: 15px;">SpringBoot</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/dubbo/" style="font-size: 15px;">dubbo</a> <a href="/tags/问题分析/" style="font-size: 15px;">问题分析</a> <a href="/tags/github/" style="font-size: 15px;">github</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/ignore_above-in-elasticsearch/">Elasticsearch中ignore_above的作用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/02/java-concurrent-striped64/">java并发之Striped64解析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/31/memory-leak-analysis-for-skywalking/">一次Skywalking内存泄露的原因分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/31/write-combining/">合并写(write combining)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/31/false-sharing/">伪共享(False Sharing)</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/08/groovy-expr-usage/">groovy-expr-usage</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/08/jackson-ctrl-char-problem-resovle/">jackson-ctrl-char-problem-resovle</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/04/solve-a-disk-warning-illusion-caused-by-rocketmq/">solve-a-disk-warning-illusion-caused-by-rocketmq</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/30/hexoclient-usage/">hexoclient-usage</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/23/customize-instance-id-with-consul-service-registry/">定制springcloud服务注册到consul中的instanceId</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">LP's Notes.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo. </a><a rel="nofollow" target="_blank" href="https://coding.net">Hosted by Coding Pages.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

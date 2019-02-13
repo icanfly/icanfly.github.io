@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://www.lpnote.com/participate/index.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.568Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/reference/index.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.568Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/tags/index.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.568Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/10/05/usage-of-branche-in-svn/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/06/14/usage-of-rebase-commits-in-git/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/01/21/virtualbox-ubuntu-14.04-resolution/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/01/19/user-guide-of-prestodb-udf/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/01/31/write-combining/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/about/index.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/categories/index.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/comment/index.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.552Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/07/troubleshooting-of-outofmemory-in-presto/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.548Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/09/upgrade-the-presto-component-in-ambari/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.548Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/12/26/string-search-algorithm-KMP/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/04/09/tomcat-jetty-container-path-compatibility/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2014/08/19/tomcat-one-hour-fullgc/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/13/start-of-DIY-configcenter/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2016/06/19/the-method-to-monitor-availability-of-services-in-dubbo/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2013/12/01/maven-skip-tests-two-styles-diff/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2016/03/03/mybatis-invalid-bound-statement-not-found/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2013/07/31/nginx-error-page-configuration/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/04/09/nginx-proxy-port/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2014/08/05/nginx-server-segment-conf/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/12/30/note-about-list-transform-using-guava/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/11/problem-analysis-of-nginx-session-sticky/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/07/13/ranger-based-user-data-authority-control-for-presto/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/01/15/reliability-of-kafka-message/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2016/03/05/rpm-usage-for-query/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/01/17/sequence-message-in-kafka/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/01/31/memory-leak-analysis-for-skywalking/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/07/31/rewrite-limit-part-in-sql/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/07/11/solr-ttl-auto-purging-solr-documents-ranger-audits/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/01/04/solve-a-disk-warning-illusion-caused-by-rocketmq/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/05/02/spring-boot-fileupload-problem-analysis/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/02/13/ignore_above-in-elasticsearch/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2013/09/25/intellij-idea-quick-key/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2016/05/26/ip-segment-to-CIDR/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/01/08/jackson-ctrl-char-problem-resovle/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/06/23/java-concurrency-abstract-queued-synchronizer-part-one/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/04/19/java-csv-encoding-problem/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2018/11/23/java-dns-cache/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/04/06/java-no-such-object-in-table/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/01/11/kafka-manager-play-with-0.10/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/06/leetcode-2-add-two-numbers/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/07/leetcode-3-longest-substring-without-repeating-characters/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/07/leetcode-4-median-of-two-sorted-arrays/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/06/leetcode-two-sum-part-2/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/06/leetcode-two-sum-part-4/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/09/06/leetcode-two-sum/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2013/12/03/linux-find-command-path/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2013/12/09/linux-time-auto-update/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2013/12/09/linux-vim-setup/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/04/11/mac-quick-key/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/06/28/java-concurrency-abstract-queued-asynchronizer-part-two/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/15/join-up-definition-of-DIY-configcenter/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/02/02/java-concurrent-striped64/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/01/08/groovy-expr-usage/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2018/12/30/hexoclient-usage/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/17/high-availability-design-of-DIY-configcenter/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/05/04/hive-query-log-problem-analysis/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/11/15/hashed-and-hierarchical-timing-wheels/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/01/23/how-to-add-a-custom-plugin-in-ranger/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/20/how-to-write-a-git-message/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2016/01/17/fastjon-bug-class-cast-exception/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2019/01/31/false-sharing/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/08/08/fix-the-bug-of-the-ambari-presto-plugin-at-restart/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/04/10/best-practices-in-hdfs-authorization-with-apache-ranger/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.520Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2018/10/23/delete-git-submodule/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.520Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2018/12/23/customize-instance-id-with-consul-service-registry/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.520Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/05/31/discovery-service-install-of-presto/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.520Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/01/15/dropwizard-metrics-series-quickstart/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.520Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/12/06/accuracy-problems-between-java-and-javascript/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.516Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2015/05/20/apache-http-proxy-port/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.516Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/05/11/autotype-not-support-with-fastjson/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.516Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/11/15/apache-kafka-purgatory-hierarchical-timing-wheels/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.516Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/2017/05/23/automated-installation-on-a-yarn-based-cluster/</loc>
+    
+    <lastmod>2019-02-13T08:59:06.516Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.lpnote.com/404.html</loc>
+    
+    <lastmod>2019-02-13T08:59:06.516Z</lastmod>
+    
+  </url>
+  
+</urlset>
